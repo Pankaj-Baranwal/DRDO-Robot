@@ -135,7 +135,7 @@ void setup() {
   while(millis() < 20000) {
     init_imu = imu_read();
   }
-  base = imu_read();
+  base = imu_read(); // error in angle.
 }
 
 
@@ -143,10 +143,10 @@ void loop() {
   if (count == 0) {
     imu_read();
 //    forward_movt(110);
-    forward_movt_using_imu(360);
+//    forward_movt_using_imu(360);
 
-//    forward_movt(50);
-//    forward_movt_using_imu(90);
+    forward_movt(110);
+    forward_movt_using_imu(45);
 //    forward_movt(50);
 //    forward_movt_using_imu(90);
 //    forward_movt(50);
@@ -220,21 +220,21 @@ void forward_movt_using_imu (int dist){
     }
   }
   
-  if (final < dist && abs(initial-360) <dist){
-    if (final + abs(360 - initial) - dist > 2){
-      
-    }else if (abs(final + abs (360 - initial) - dist) > 2){
-      
-    }
-  }else if(initial < dist && abs(final - 360) < dist){
-    if (initial + abs(360 - final) - dist > 2){
-      
-    }else if (abs(initial + abs (360 - final) - dist) > 2){
-      
-    }    
-  }else{
-    
-  }
+//  if (final < dist && abs(initial-360) <dist){
+//    if (final + abs(360 - initial) - dist > 2){
+//      
+//    }else if (abs(final + abs (360 - initial) - dist) > 2){
+//      
+//    }
+//  }else if(initial < dist && abs(final - 360) < dist){
+//    if (initial + abs(360 - final) - dist > 2){
+//      
+//    }else if (abs(initial + abs (360 - final) - dist) > 2){
+//      
+//    }    
+//  }else{
+//    
+//  }
   
   enc_ltcount = 0;
   sstop();
