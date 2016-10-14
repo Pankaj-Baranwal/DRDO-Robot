@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/home/pankaj/Workspace/pendulumReader-master/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.3.0/jars/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="debf30ce0a7560396b6235edef77e447006454c2">
+        <dex dex="/home/pankaj/Workspace/pendulumReader-master/app/build/intermediates/pre-dexed/debug/com.android.support-recyclerview-v7-23.3.0_d15cbb06c9f677ccf51f6703d85c66b791416252.jar" />
+    </item>
+    <item
+        jar="/home/pankaj/.gradle/caches/modules-2/files-2.1/com.github.PhilJay/MPAndroidChart/v3.0.0-beta1/54d65d51b5ebec588a19b2384efb6395b5bf5b18/MPAndroidChart-v3.0.0-beta1.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="54d65d51b5ebec588a19b2384efb6395b5bf5b18">
+        <dex dex="/home/pankaj/Workspace/pendulumReader-master/app/build/intermediates/pre-dexed/debug/MPAndroidChart-v3.0.0-beta1_9726d20969d7f5e105d9d51bca3e81e7211f4a51.jar" />
+    </item>
+    <item
+        jar="/home/pankaj/Workspace/pendulumReader-master/app/build/intermediates/exploded-aar/com.android.support/design/23.3.0/jars/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="f0001e71cea6ae432a00021c6f727f5ef0f3d27e">
+        <dex dex="/home/pankaj/Workspace/pendulumReader-master/app/build/intermediates/pre-dexed/debug/com.android.support-design-23.3.0_fe77579c1e66e440526c1b3355eb8ce821932e4f.jar" />
+    </item>
+    <item
+        jar="/home/pankaj/Workspace/pendulumReader-master/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/23.3.0/jars/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="23be6993826b8fd88bbc8d14928bb3b8960d3d4e">
+        <dex dex="/home/pankaj/Workspace/pendulumReader-master/app/build/intermediates/pre-dexed/debug/com.android.support-animated-vector-drawable-23.3.0_ec517856228c332fbb9175686d46d6645e1f29c2.jar" />
+    </item>
+    <item
+        jar="/home/pankaj/Workspace/pendulumReader-master/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/jars/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="1b8e03daaa43fb0a4cd57e378167c2fd70454c1e">
+        <dex dex="/home/pankaj/Workspace/pendulumReader-master/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-23.3.0_1831d4db296c60e623860de306a5b191ced6f7b9.jar" />
+    </item>
+    <item
+        jar="/home/pankaj/Workspace/pendulumReader-master/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.3.0/jars/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="8a034dd16c0dfd75fe86c52c2cd581592acc684a">
+        <dex dex="/home/pankaj/Workspace/pendulumReader-master/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-23.3.0_0c805bf4828a712e0fe4357ce2a1d8e553aca915.jar" />
+    </item>
+    <item
+        jar="/home/pankaj/Workspace/pendulumReader-master/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.3.0/jars/libs/internal_impl-23.3.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="4da5a4d697d32497c6f85567a5112e62fdfd0676">
+        <dex dex="/home/pankaj/Workspace/pendulumReader-master/app/build/intermediates/pre-dexed/debug/internal_impl-23.3.0_1e11b35832c440dc2480d48ac24c9d0b49f78a71.jar" />
+    </item>
+    <item
+        jar="/media/pankaj/NewVolume/SDK_ubuntu/extras/android/m2repository/com/android/support/support-annotations/23.3.0/support-annotations-23.3.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="db7791d75a07fef9844d06236c1c59ba7bf6997c">
+        <dex dex="/home/pankaj/Workspace/pendulumReader-master/app/build/intermediates/pre-dexed/debug/support-annotations-23.3.0_8e7fc69df95faa92f63b196ea92d0553754d53dc.jar" />
+    </item>
+    <item
+        jar="/home/pankaj/Workspace/pendulumReader-master/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/23.3.0/jars/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="a0b5d60246cd9d4f3f2443611b3b4c25265840b5">
+        <dex dex="/home/pankaj/Workspace/pendulumReader-master/app/build/intermediates/pre-dexed/debug/com.android.support-support-vector-drawable-23.3.0_d72a3622846385105d1c75914fc92955820b2be0.jar" />
+    </item>
+
+</items>

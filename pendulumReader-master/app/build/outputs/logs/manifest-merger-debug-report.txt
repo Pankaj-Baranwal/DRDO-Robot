@@ -1,0 +1,88 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /home/pankaj/Workspace/pendulumReader-master/app/src/main/AndroidManifest.xml:2:1-40:12
+	package
+		ADDED from /home/pankaj/Workspace/pendulumReader-master/app/src/main/AndroidManifest.xml:3:5-33
+		INJECTED from /home/pankaj/Workspace/pendulumReader-master/app/src/main/AndroidManifest.xml
+		INJECTED from /home/pankaj/Workspace/pendulumReader-master/app/src/main/AndroidManifest.xml
+	android:versionName
+		INJECTED from /home/pankaj/Workspace/pendulumReader-master/app/src/main/AndroidManifest.xml
+		INJECTED from /home/pankaj/Workspace/pendulumReader-master/app/src/main/AndroidManifest.xml
+	xmlns:android
+		ADDED from /home/pankaj/Workspace/pendulumReader-master/app/src/main/AndroidManifest.xml:2:11-69
+	android:versionCode
+		INJECTED from /home/pankaj/Workspace/pendulumReader-master/app/src/main/AndroidManifest.xml
+		INJECTED from /home/pankaj/Workspace/pendulumReader-master/app/src/main/AndroidManifest.xml
+uses-permission#android.permission.BLUETOOTH_ADMIN
+ADDED from /home/pankaj/Workspace/pendulumReader-master/app/src/main/AndroidManifest.xml:5:5-74
+	android:name
+		ADDED from /home/pankaj/Workspace/pendulumReader-master/app/src/main/AndroidManifest.xml:5:22-71
+uses-permission#android.permission.BLUETOOTH
+ADDED from /home/pankaj/Workspace/pendulumReader-master/app/src/main/AndroidManifest.xml:6:5-68
+	android:name
+		ADDED from /home/pankaj/Workspace/pendulumReader-master/app/src/main/AndroidManifest.xml:6:22-65
+application
+ADDED from /home/pankaj/Workspace/pendulumReader-master/app/src/main/AndroidManifest.xml:8:5-38:19
+MERGED from [com.android.support:design:23.3.0] /home/pankaj/Workspace/pendulumReader-master/app/build/intermediates/exploded-aar/com.android.support/design/23.3.0/AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:appcompat-v7:23.3.0] /home/pankaj/Workspace/pendulumReader-master/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-vector-drawable:23.3.0] /home/pankaj/Workspace/pendulumReader-master/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/23.3.0/AndroidManifest.xml:7:5-20
+MERGED from [com.android.support:support-v4:23.3.0] /home/pankaj/Workspace/pendulumReader-master/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.3.0/AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:animated-vector-drawable:23.3.0] /home/pankaj/Workspace/pendulumReader-master/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/23.3.0/AndroidManifest.xml:7:5-20
+	android:label
+		ADDED from /home/pankaj/Workspace/pendulumReader-master/app/src/main/AndroidManifest.xml:11:9-41
+	android:allowBackup
+		ADDED from /home/pankaj/Workspace/pendulumReader-master/app/src/main/AndroidManifest.xml:9:9-35
+	android:icon
+		ADDED from /home/pankaj/Workspace/pendulumReader-master/app/src/main/AndroidManifest.xml:10:9-43
+	android:theme
+		ADDED from /home/pankaj/Workspace/pendulumReader-master/app/src/main/AndroidManifest.xml:12:9-40
+activity#com.led_on_off.led.SplashScreen
+ADDED from /home/pankaj/Workspace/pendulumReader-master/app/src/main/AndroidManifest.xml:13:9-21:20
+	android:label
+		ADDED from /home/pankaj/Workspace/pendulumReader-master/app/src/main/AndroidManifest.xml:15:13-45
+	android:name
+		ADDED from /home/pankaj/Workspace/pendulumReader-master/app/src/main/AndroidManifest.xml:14:13-59
+intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
+ADDED from /home/pankaj/Workspace/pendulumReader-master/app/src/main/AndroidManifest.xml:16:13-20:29
+action#android.intent.action.MAIN
+ADDED from /home/pankaj/Workspace/pendulumReader-master/app/src/main/AndroidManifest.xml:17:17-69
+	android:name
+		ADDED from /home/pankaj/Workspace/pendulumReader-master/app/src/main/AndroidManifest.xml:17:25-66
+category#android.intent.category.LAUNCHER
+ADDED from /home/pankaj/Workspace/pendulumReader-master/app/src/main/AndroidManifest.xml:19:17-77
+	android:name
+		ADDED from /home/pankaj/Workspace/pendulumReader-master/app/src/main/AndroidManifest.xml:19:27-74
+activity#com.led_on_off.led.DeviceList
+ADDED from /home/pankaj/Workspace/pendulumReader-master/app/src/main/AndroidManifest.xml:22:9-26:20
+	android:label
+		ADDED from /home/pankaj/Workspace/pendulumReader-master/app/src/main/AndroidManifest.xml:24:13-45
+	android:name
+		ADDED from /home/pankaj/Workspace/pendulumReader-master/app/src/main/AndroidManifest.xml:23:13-57
+activity#com.led_on_off.led.ledControl
+ADDED from /home/pankaj/Workspace/pendulumReader-master/app/src/main/AndroidManifest.xml:28:9-32:20
+	android:label
+		ADDED from /home/pankaj/Workspace/pendulumReader-master/app/src/main/AndroidManifest.xml:30:13-40
+	android:name
+		ADDED from /home/pankaj/Workspace/pendulumReader-master/app/src/main/AndroidManifest.xml:29:13-57
+activity#com.led_on_off.led.AboutActivity
+ADDED from /home/pankaj/Workspace/pendulumReader-master/app/src/main/AndroidManifest.xml:33:9-36:20
+	android:label
+		ADDED from /home/pankaj/Workspace/pendulumReader-master/app/src/main/AndroidManifest.xml:35:13-57
+	android:name
+		ADDED from /home/pankaj/Workspace/pendulumReader-master/app/src/main/AndroidManifest.xml:34:13-60
+uses-sdk
+INJECTED from /home/pankaj/Workspace/pendulumReader-master/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
+MERGED from [com.android.support:design:23.3.0] /home/pankaj/Workspace/pendulumReader-master/app/build/intermediates/exploded-aar/com.android.support/design/23.3.0/AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:appcompat-v7:23.3.0] /home/pankaj/Workspace/pendulumReader-master/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/AndroidManifest.xml:21:5-23:78
+MERGED from [com.android.support:support-vector-drawable:23.3.0] /home/pankaj/Workspace/pendulumReader-master/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/23.3.0/AndroidManifest.xml:5:5-43
+MERGED from [com.android.support:support-v4:23.3.0] /home/pankaj/Workspace/pendulumReader-master/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.3.0/AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:animated-vector-drawable:23.3.0] /home/pankaj/Workspace/pendulumReader-master/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/23.3.0/AndroidManifest.xml:5:5-44
+MERGED from [com.android.support:recyclerview-v7:23.3.0] /home/pankaj/Workspace/pendulumReader-master/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.3.0/AndroidManifest.xml:20:5-43
+	tools:overrideLibrary
+		ADDED from [com.android.support:appcompat-v7:23.3.0] /home/pankaj/Workspace/pendulumReader-master/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/AndroidManifest.xml:23:9-75
+	android:targetSdkVersion
+		INJECTED from /home/pankaj/Workspace/pendulumReader-master/app/src/main/AndroidManifest.xml
+		INJECTED from /home/pankaj/Workspace/pendulumReader-master/app/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /home/pankaj/Workspace/pendulumReader-master/app/src/main/AndroidManifest.xml
+		INJECTED from /home/pankaj/Workspace/pendulumReader-master/app/src/main/AndroidManifest.xml

@@ -1,0 +1,90 @@
+<android.support.design.widget.CoordinatorLayout
+    android:id="@+id/main_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#1d4851"
+    tools:context="com.led_on_off.led.ledControl">
+
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/activity_vertical_margin"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/activity_vertical_margin"
+            >
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="LED Controller "
+                android:textColor="#ffffff"
+                android:textSize="20sp"/>
+
+            <EditText
+                android:id="@+id/etLength"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Length of string"
+                android:inputType="number"/>
+
+            <EditText
+                android:id="@+id/etRep"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/etLength"
+                android:layout_marginTop="10dp"
+                android:inputType="number"
+                android:hint="Number of Oscillation"/>
+
+
+            <ImageButton
+                android:id="@+id/on"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="79dp"
+                android:layout_marginTop="79dp"
+                android:background="@null"
+                android:src="@drawable/on"/>
+
+
+            <!--<ImageButton-->
+            <!--android:id="@+id/discnt"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:background="@null"-->
+            <!--android:src="@drawable/disconnect"/>-->
+
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/chart1"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:visibility="gone"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/discnt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="16dp"
+        app:layout_anchor="@id/scrollView"
+        app:layout_anchorGravity="bottom|right|end"/>
+
+</android.support.design.widget.CoordinatorLayout>
