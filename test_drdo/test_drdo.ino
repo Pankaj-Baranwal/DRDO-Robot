@@ -48,8 +48,8 @@ long knobRightVal = 0;
 
 // for motor movement
 // rf = right motor in forward when HIGH
-int rf =9 ,rb =10,lf=6,lb=5;
-int motor_speed =150; //(0-255)
+int rf =11 ,rb =12,lf=6,lb=5;
+int motor_speed =120; //(0-255)
 
 // for PID
 int power_difference, encoderleft, encoderright, proportional;
@@ -58,7 +58,7 @@ const int maximum = 150;
 
 
 // for encoders
-double unit_distance = 31.415/2000;
+double unit_distance = 31.415/2400;
 
 int deg_dis = 3;
 int x;
@@ -134,10 +134,10 @@ void setup() {
   pinMode(rf, OUTPUT);
   pinMode(rb, OUTPUT);
   
-  analogWrite(lf, LOW);
-  analogWrite(lb, LOW);
-  analogWrite(rf, LOW);
-  analogWrite(rb, LOW);
+  digitalWrite(lf, LOW);
+  digitalWrite(lb, LOW);
+  digitalWrite(rf, LOW);
+  digitalWrite(rb, LOW);
   while(millis() < 20000) {
     init_imu = imu_read();
   }
@@ -151,7 +151,7 @@ void loop() {
 //    forward_movt(110);
 //    forward_movt_using_imu(360);
 
-    forward_movt(110);
+    forward_movt_using_imu(90);
 //    forward_movt_using_imu(45);
 //    forward_movt(50);
 //    forward_movt_using_imu(90);
@@ -282,33 +282,33 @@ void forward_movt (int dist){
 
 void turn_left(){
   analogWrite(rf, motor_speed);
-  analogWrite(rb, LOW);
-  analogWrite(lf, LOW);
-  analogWrite(lb, LOW);
+  digitalWrite(rb, LOW);
+  digitalWrite(lf, LOW);
+  digitalWrite(lb, LOW);
 }
 
 void turn_right(){
-  analogWrite(rf, LOW);
-  analogWrite(rb, LOW);
+  digitalWrite(rf, LOW);
+  digitalWrite(rb, LOW);
   analogWrite(lf, motor_speed);
-  analogWrite(lb, LOW);
+  digitalWrite(lb, LOW);
 }
 
 void forward(){
   if (power_difference < 0)//moving left -----errooor 
   {
     analogWrite(rf, (maximum + power_difference));  ////////////right motor at less speed so that bot moves right
-    analogWrite(rb, LOW);
+    digitalWrite(rb, LOW);
     analogWrite(lf, maximum);
-    analogWrite(lb,LOW);
+    digitalWrite(lb,LOW);
     Serial.print("\t\t\t\t\tleft");
   }
   else //moving right -------errror
   {
     analogWrite(rf,maximum);
-    analogWrite(rb, LOW);
+    digitalWrite(rb, LOW);
     analogWrite(lf, maximum - power_difference);/// left motor is at less speed so that bot moves left
-    analogWrite(lb, LOW);
+    digitalWrite(lb, LOW);
     Serial.print("\t\t\t\t\tright");
   }
 } 
