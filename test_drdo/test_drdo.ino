@@ -16,7 +16,8 @@ MPU6050 mpu;
 //   Best Performance: both pins have interrupt capability
 //   Good Performance: only the first pin has interrupt capability
 //   Low Performance:  neither pin has interrupt capability
-Encoder knobLeft(3, 7);
+Encoder knobLeft(2, 3);
+Encoder knobRight(18, 4);
 
 long positionLeft  = -999;
 
@@ -42,9 +43,12 @@ float ypr[3];           // [yaw, pitch, roll]   yaw/pitch/roll container and gra
 volatile bool mpuInterrupt = false;     // indicates whether MPU interrupt pin has gone high
 float init_imu;
 
-long knobVal = 0;
+long knobLeftVal = 0;
+long knobRightVal = 0;
+
 // for motor movement
-int rf =9 ,rb =10,lf=5,lb=6;
+// rf = right motor in forward when HIGH
+int rf =9 ,rb =10,lf=6,lb=5;
 int motor_speed =150; //(0-255)
 
 // for PID
@@ -54,7 +58,7 @@ const int maximum = 150;
 
 
 // for encoders
-double unit_distance = 31.415/10000;
+double unit_distance = 31.415/2000;
 
 int deg_dis = 3;
 int x;
@@ -62,7 +66,8 @@ int y;
 int a, b;
 
 long enc_rtcount = 0, enc_ltcount = 0;
-int r_en = 7, l_en = 3;
+
+long no_of_spokes = 0;
 
 
 int count = 0;
@@ -108,7 +113,7 @@ void setup() {
       mpu.setDMPEnabled(true);
 
       Serial.println(F("Enabling interrupt detection (Arduino external interrupt 0)..."));
-      attachInterrupt(0, dmpDataReady, RISING);
+      attachInterrupt(4, dmpDataReady, RISING);
       mpuIntStatus = mpu.getIntStatus();
 
       Serial.println(F("DMP ready! Waiting for first interrupt..."));
@@ -123,15 +128,16 @@ void setup() {
   }
   // END IMU INIT
   
-  // encoder pins
-  pinMode(r_en, INPUT);
-  pinMode(l_en, INPUT);
   // motor pins
   pinMode(lf, OUTPUT);
   pinMode(lb, OUTPUT);
   pinMode(rf, OUTPUT);
   pinMode(rb, OUTPUT);
   
+  analogWrite(lf, LOW);
+  analogWrite(lb, LOW);
+  analogWrite(rf, LOW);
+  analogWrite(rb, LOW);
   while(millis() < 20000) {
     init_imu = imu_read();
   }
@@ -146,7 +152,7 @@ void loop() {
 //    forward_movt_using_imu(360);
 
     forward_movt(110);
-    forward_movt_using_imu(45);
+//    forward_movt_using_imu(45);
 //    forward_movt(50);
 //    forward_movt_using_imu(90);
 //    forward_movt(50);
@@ -162,10 +168,6 @@ void forward_movt_using_imu (int dist){
   if (dist > 0){
     while(total < dist-0.8) {
       current = imu_read();
-      Serial.println("CURRENT");
-      Serial.println(current);
-      Serial.println("PREVIOUS");
-      Serial.println(previous);
       if (current != 0){
       if (current <15 && previous > 345){
         if (abs(current + 360 - previous) < 15){
@@ -192,10 +194,6 @@ void forward_movt_using_imu (int dist){
     dist = abs(dist);
     while(total < dist-0.8) {
       current = imu_read();
-      Serial.println("CURRENT");
-      Serial.println(current);
-      Serial.println("PREVIOUS");
-      Serial.println(previous);
       if (current != 0){
       if (current <15 && previous > 345){
         if (abs(current + 360 - previous) < 15){
@@ -245,17 +243,21 @@ void forward_movt_using_imu (int dist){
 }
 
 void forward_movt (int dist){
-  long no_of_spokes = (long)(dist/unit_distance);
+  long no_of_spokes_left = (long)(dist/unit_distance);
+  long no_of_spokes_right = (long)(dist/unit_distance);
 //  1 degree, spokes covered = .67; total spokes covered in x deg = .67*x
   knobLeft.write(0);
   Serial.println("INITIAL KNOB COUNT");
   Serial.println(no_of_spokes);
   enc_ltcount = knobLeft.read();
-  knobVal = enc_ltcount;
-  no_of_spokes = enc_ltcount + no_of_spokes;
+  enc_rtcount = knobRight.read();
+  knobLeftVal = enc_ltcount;
+  knobRightVal = enc_rtcount;
+  no_of_spokes_left = enc_ltcount + no_of_spokes_left;
+  no_of_spokes_right = enc_rtcount + no_of_spokes_right;
   Serial.println("INITIAL NUMBER OIF SPOKES");
-  Serial.println(no_of_spokes);
-  while(abs(enc_ltcount) <= abs(no_of_spokes)) {
+  Serial.println(no_of_spokes_left);
+  while(abs(enc_ltcount) <= abs(no_of_spokes_left)) {
     call_ltenc();
     next = imu_read_off();
        if(next<180)
@@ -296,7 +298,7 @@ void forward(){
   if (power_difference < 0)//moving left -----errooor 
   {
     analogWrite(rf, (maximum + power_difference));  ////////////right motor at less speed so that bot moves right
-    analogWrite(rb,LOW);
+    analogWrite(rb, LOW);
     analogWrite(lf, maximum);
     analogWrite(lb,LOW);
     Serial.print("\t\t\t\t\tleft");
@@ -321,23 +323,24 @@ void turn_left(float deg) {
   deg1+=deg;
 }
 
-int call_rtenc() {
-  b = a;
-  a = digitalRead(r_en);
-  
-  if((a == 0 && b == 1) || (a == 1 && b == 0)) {
-    enc_rtcount++;
-  }
-  return enc_rtcount;
+void call_rtenc() {
+  long prev = knobRightVal;
+  knobRightVal = knobRight.read();
+  Serial.println("Prev Values: ");
+  Serial.println(prev);
+  Serial.println(knobRightVal);
+  enc_ltcount = enc_ltcount + abs(abs(knobRightVal) - abs(prev));
+  Serial.println("ENCODER COUNT");
+  Serial.println(enc_ltcount);
 }
 
 void call_ltenc() {
-  long prev = knobVal;
-  knobVal = knobLeft.read();
+  long prev = knobLeftVal;
+  knobLeftVal = knobLeft.read();
   Serial.println("Prev Values: ");
   Serial.println(prev);
-  Serial.println(knobVal);
-  enc_ltcount = enc_ltcount + abs(abs(knobVal) - abs(prev));
+  Serial.println(knobLeftVal);
+  enc_ltcount = enc_ltcount + abs(abs(knobLeftVal) - abs(prev));
   Serial.println("ENCODER COUNT");
   Serial.println(enc_ltcount);
 }
@@ -404,4 +407,3 @@ float imu_read_off() {
  // Serial.println(check);
   return check;
 }
-
