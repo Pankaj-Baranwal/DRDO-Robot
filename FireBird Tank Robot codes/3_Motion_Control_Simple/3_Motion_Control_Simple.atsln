@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Atmel Studio Solution File, Format Version 11.00
+Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "3_Motion_Control_Simple", "3_Motion_Control_Simple\3_Motion_Control_Simple.cproj", "{995213EF-FF66-45EE-A028-0899B3D83F79}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|AVR = Debug|AVR
+		Release|AVR = Release|AVR
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{995213EF-FF66-45EE-A028-0899B3D83F79}.Debug|AVR.ActiveCfg = Debug|AVR
+		{995213EF-FF66-45EE-A028-0899B3D83F79}.Debug|AVR.Build.0 = Debug|AVR
+		{995213EF-FF66-45EE-A028-0899B3D83F79}.Release|AVR.ActiveCfg = Release|AVR
+		{995213EF-FF66-45EE-A028-0899B3D83F79}.Release|AVR.Build.0 = Release|AVR
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
