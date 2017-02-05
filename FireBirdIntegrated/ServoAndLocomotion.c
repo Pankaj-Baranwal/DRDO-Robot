@@ -7,6 +7,17 @@
 	Servo2 is for Horizontal
 */
 
+/*
+	Pin 39 -> Port J - 6
+	Pin 40 -> Port J - 7 
+	Pin 41 -> Port J - 4  
+	Pin 42 -> Port J - 5  
+*/
+void gpio_pin_config(void)
+{
+	DDRJ = 0x00; //Setting all DDRJ pinsas INPUT
+	PINJ = 0x00;
+}
 
 unsigned long int ShaftCountLeft = 0; //to keep track of left position encoder 
 unsigned long int ShaftCountRight = 0; //to keep track of right position encoder
@@ -304,8 +315,10 @@ void init_devices()
  port_init();  //Initializes all the ports
  left_position_encoder_interrupt_init();
  right_position_encoder_interrupt_init();
+ gpio_pin_config();
  timer5_init();
  sei();   // Enables the global interrupt 
+
 }
 
 // Function for robot velocity control
@@ -433,7 +446,6 @@ void move(int cell){
 		soft_left_2_degrees(90);	//Rotate (soft turn) by 90 degrees
 		stop();
 		_delay_ms(500);
-
 		soft_right_2_degrees(90); //Rotate (soft turn) by 90 degrees
 		stop();
 		_delay_ms(500);
@@ -476,13 +488,20 @@ default_move_all_servos(){
 	_delay_ms(2000);
 }
 
-
-
+void reset_allstop(){
+	stop();
+	move_servo_horizontal(0);
+	move_servo_vertical(45);
+	_delay_ms(500);
+	servo_1_free();
+	servo_2_free();
+}
 //Main Function
 
 int main(void)
 {
 	init_devices();
+	/*
 	velocity (120, 120); //Set robot velocity here. Smaller the value lesser will be the velocity
 					 //Try different valuse between 0 to 255
 	move(2);
@@ -493,4 +512,62 @@ int main(void)
 	default_move_all_servos();
 	move(6);
 	default_move_all_servos();
+	*/
+	while(1)
+	{
+		char input_gpio = PINJ;
+		//Reset to intital position 
+		if(input_gpio == 0x00)
+		{
+			reset_allstop();
+		}
+		else if(input_gpio == 0x10)
+		{
+			move(1);
+		}
+		else if(input_gpio == 0x20)
+		{
+			move(2);
+		}
+		else if(input_gpio == 0x30)
+		{
+			move(3);
+		}
+		else if(input_gpio == 0x40)
+		{
+			move(4);
+		}
+		else if(input_gpio == 0x50)
+		{
+			move(5);
+		}
+		else if(input_gpio == 0x60)
+		{
+			move(6);
+		}
+		else if(input_gpio == 0x70)
+		{
+			move(7);
+		}
+		else if(input_gpio == 0x80)
+		{
+			move(8);
+		}
+		else if(input_gpio == 0x90)
+		{
+			move(9);
+		}
+		else if(input_gpio == 0xA0)
+		{
+			move_servo_horizontal(0); //right camera movement.
+		}
+		else if(input_gpio == 0xB0)
+		{
+			move_servo_horizontal(90); //center camera movement.
+		}
+		else if(input_gpio == 0xC0)
+		{
+			move_servo_horizontal(180); //left camera movement.
+		}
+	}
 }
