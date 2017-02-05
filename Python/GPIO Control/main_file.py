@@ -3,6 +3,14 @@ import os
 import picamera
 from time import sleep
 
+camera = picamera.PiCamera()
+camera.resolution = (640, 480)
+camera.framerate = 15
+camera.vflip = False
+camera.hflip = False
+camera.brightness = 50
+counter = 0
+
 #Defining GPIO pin numbers 
 pin1 = 6 # This is GPIO6, hence, 5th pin in inner row from ports
 pin2 = 7 # 8th pin in outer row from ports
@@ -11,6 +19,7 @@ pin4 = 9 # 10th pin in inner row from ports
 
 # Setting up basic GPIO settings
 gpio.setmode(gpio.BCM)
+gpio.setwarnings(False)
 gpio.setup(pin1, gpio.OUT)
 gpio.setup(pin2, gpio.OUT)
 gpio.setup(pin3, gpio.OUT)
@@ -34,18 +43,23 @@ def switch_off():
     sleep(2)
     
 def click_picture():
-    camera = picamera.PiCamera()
-    camera.resolution = (640, 480)
-    camera.framerate = 15
-    camera.capture('image.jpg')
+    global camera
+    global counter
     camera.start_preview()
-    camera.vflip = False
-    camera.hflip = False
-    camera.brightness = 50
-    camera.start_preview()
-    camera.capture('image.jpg')
+    sleep(0.5)
+    if (counter == 3):
+        counter = 0
+    camera.capture('image%s.jpg'%counter)
+    counter = counter + 1
     camera.stop_preview()
     print ("Clicked Image")
+    sleep(2)
+    os.popen("cat image.jpg | nc 192.168.1.108 2999")
+    print ("Image sent")
+    with open("send.txt", "w") as f:
+        f.write("1\n")
+    os.popen("cat send.txt | nc 192.168.1.108 2999")
+    print ("number sent")
 
 def move_to_cell(index):
     global pin1
@@ -77,6 +91,9 @@ def move_to_cell(index):
     elif (index == 9):
         gpio.output(pin1, 1)
         gpio.output(pin4, 1)
+    camera_servo_movement(0)
+    camera_servo_movement(90)
+    camera_servo_movement(180)
         
 def camera_servo_movement(position):
     global pin1
@@ -94,6 +111,7 @@ def camera_servo_movement(position):
     elif (position == 180):
         gpio.output(pin3, 1)
         gpio.output(pin4, 1)
+    click_picture()
         
 def reset():
     global pin1
@@ -111,28 +129,32 @@ try:
     # Turned off by default
     reset()
     # Infinity Loop
+    camera_servo_movement(0)
+    camera_servo_movement(90)
+    camera_servo_movement(180)
     while (1):
         os.popen("nc -l 2999 > received.txt")
         print ("Received data")
         f = open("received.txt")
         next = (f.readline()).strip()
-        if (next == '01'):
+        print (next)
+        if (next == '1'):
             move_to_cell(1)
-        elif (next == '02'):
+        elif (next == '2'):
             move_to_cell(2)
-        elif (next == '03'):
+        elif (next == '3'):
             move_to_cell(3)
-        elif (next == '04'):
+        elif (next == '4'):
             move_to_cell(4)
-        elif (next == '05'):
+        elif (next == '5'):
             move_to_cell(5)
-        elif (next == '06'):
+        elif (next == '6'):
             move_to_cell(6)
-        elif (next == '07'):
+        elif (next == '7'):
             move_to_cell(7)
-        elif (next == '08'):
+        elif (next == '8'):
             move_to_cell(8)
-        elif (next == '09'):
+        elif (next == '9'):
             move_to_cell(9)
         elif (next == '10'):
             reset()
@@ -142,14 +164,10 @@ try:
             camera_servo_movement(90)
         elif (next == '13'):
             camera_servo_movement(180)
-        elif (next == '00'):
-            click_picture()
-        os.popen("cat image.jpg | nc 192.168.1.108 | 2999")
-        print ("Image sent")
-        with open("send.txt", "a") as f
-            f.write("1\n")
-        os.popen("cat send.txt | nc 192.168.1.108 | 2999")
-        print ("number sent")
+        elif (next == '0'):
+            camera_servo_movement(0)
+            camera_servo_movement(90)
+            camera_servo_movement(180)
 #         switch_on()
 #         print "ON"
 #         switch_off()
