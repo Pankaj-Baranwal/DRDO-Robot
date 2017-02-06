@@ -91,6 +91,7 @@ def move_to_cell(index):
     elif (index == 9):
         gpio.output(pin1, 1)
         gpio.output(pin4, 1)
+    sleep(5)
     camera_servo_movement(0)
     camera_servo_movement(90)
     camera_servo_movement(180)
@@ -111,6 +112,7 @@ def camera_servo_movement(position):
     elif (position == 180):
         gpio.output(pin3, 1)
         gpio.output(pin4, 1)
+    sleep(5)
     click_picture()
         
 def reset():
