@@ -8,10 +8,10 @@
 */
 
 /*
-	Pin 39 -> Port J - 6
-	Pin 40 -> Port J - 7 
-	Pin 41 -> Port J - 4  
-	Pin 42 -> Port J - 5  
+	Pin 39 -> Port J - 6  -------> RPI 9
+	Pin 40 -> Port J - 7  -------> RPI 10
+	Pin 41 -> Port J - 4  -------> RPI 5
+	Pin 42 -> Port J - 5  -------> RPI 8
 */
 void gpio_pin_config(void)
 {
