@@ -1,7 +1,8 @@
 import RPi.GPIO as gpio
 import os
 import picamera
-from time import sleep
+from time import sleep, time
+
 
 camera = picamera.PiCamera()
 camera.resolution = (640, 480)
@@ -55,10 +56,6 @@ def click_picture():
     sleep(1)
     os.popen("cat image.jpg | nc 192.168.1.108 2999")
     print ("Image sent")
-    with open("send.txt", "w") as f:
-        f.write("1\n")
-    os.popen("cat send.txt | nc 192.168.1.108 2999")
-    print ("number sent")
 
 def move_to_cell(index):
     global pin1
@@ -124,6 +121,8 @@ def reset():
     gpio.output(pin3, 0)
     gpio.output(pin4, 0)
     
+current_milli_time = lambda: int(round(time.time() * 1000))
+    
 
 # Putting under try block as need to clean up pins on keyboard interrupt
 try:
@@ -133,12 +132,15 @@ try:
     camera_servo_movement(0)
     camera_servo_movement(90)
     camera_servo_movement(180)
+    with open("send.txt", "w") as f:
+        f.write("---x---")
     while (1):
         os.popen("nc -l 2999 > received.txt")
         print ("Received data")
         f = open("received.txt")
         next = (f.readline()).strip()
-        print (next)
+        with open("send.txt", "a") as f:
+            f.write("Moved to cell %s  %s\n"%(next, current_milli_time()))
         if (next == '1'):
             move_to_cell(1)
         elif (next == '2'):
