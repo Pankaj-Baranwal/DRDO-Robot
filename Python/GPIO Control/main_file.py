@@ -51,10 +51,10 @@ def click_picture():
     if (counter == 3):
         counter = 0
     camera.capture('image%s.jpg'%counter)
-    counter = counter + 1
     print ("Clicked Image")
     sleep(1)
-    os.popen("cat image.jpg | nc 192.168.1.108 2999")
+    os.popen("cat image%s.jpg | nc 192.168.1.108 2999"%counter)
+    counter = counter + 1
     print ("Image sent")
 
 def move_to_cell(index):
@@ -87,7 +87,7 @@ def move_to_cell(index):
     elif (index == 9):
         gpio.output(pin1, 1)
         gpio.output(pin4, 1)
-    sleep(4)
+    sleep(3)
     camera_servo_movement(0)
     camera_servo_movement(90)
     camera_servo_movement(180)
@@ -108,7 +108,7 @@ def camera_servo_movement(position):
     elif (position == 180):
         gpio.output(pin3, 1)
         gpio.output(pin4, 1)
-    sleep(4)
+    sleep(1)
     click_picture()
         
 def reset():
@@ -121,7 +121,7 @@ def reset():
     gpio.output(pin3, 0)
     gpio.output(pin4, 0)
     
-current_milli_time = lambda: int(round(time.time() * 1000))
+current_milli_time = lambda: int(round(time() * 1000))
     
 
 # Putting under try block as need to clean up pins on keyboard interrupt
@@ -143,7 +143,7 @@ try:
             f.write("Moved to cell %s  %s\n"%(next, current_milli_time()))
         if (next == '1'):
             move_to_cell(1)
-        elif (next == '2'):
+        elif (next == ' 2'):
             move_to_cell(2)
         elif (next == '3'):
             move_to_cell(3)
