@@ -10,6 +10,8 @@ camera.vflip = False
 camera.hflip = False
 camera.brightness = 50
 counter = 0
+camera.start_preview()
+sleep(0.5)
 
 #Defining GPIO pin numbers 
 pin1 = 6 # This is GPIO6, hence, 5th pin in inner row from ports
@@ -45,15 +47,12 @@ def switch_off():
 def click_picture():
     global camera
     global counter
-    camera.start_preview()
-    sleep(0.5)
     if (counter == 3):
         counter = 0
     camera.capture('image%s.jpg'%counter)
     counter = counter + 1
-    camera.stop_preview()
     print ("Clicked Image")
-    sleep(2)
+    sleep(1)
     os.popen("cat image.jpg | nc 192.168.1.108 2999")
     print ("Image sent")
     with open("send.txt", "w") as f:
@@ -91,7 +90,7 @@ def move_to_cell(index):
     elif (index == 9):
         gpio.output(pin1, 1)
         gpio.output(pin4, 1)
-    sleep(5)
+    sleep(4)
     camera_servo_movement(0)
     camera_servo_movement(90)
     camera_servo_movement(180)
@@ -112,7 +111,7 @@ def camera_servo_movement(position):
     elif (position == 180):
         gpio.output(pin3, 1)
         gpio.output(pin4, 1)
-    sleep(5)
+    sleep(4)
     click_picture()
         
 def reset():
@@ -177,5 +176,7 @@ try:
 
 except KeyboardInterrupt:
     gpio.cleanup()
+    camera.stop_preview()
 finally:
     gpio.cleanup()
+    camera.stop_preview()
