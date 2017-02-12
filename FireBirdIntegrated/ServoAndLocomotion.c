@@ -386,13 +386,14 @@ void servo_3_free (void) //makes servo 3 free rotating
 */
 
 void move(int cell){
-	int cell_distance = 100; // 100 mm between two cells
-	int wait_time = 200;
+	int cell_distance = 200; // 100 mm between two cells
+	int cell_distance_diagonal = 280;
+	int wait_time = 10;
 	if (cell == 1){
-		soft_left_degrees(90); //Rotate (soft turn) by 90 degrees
+		left_degrees(45); //Rotate (soft turn) by 90 degrees
 		stop();
 		_delay_ms(wait_time);
-		soft_right_degrees(90);	//Rotate (soft turn) by 90 degrees
+		forward_mm(cell_distance_diagonal); //Moves robot forward 100mm
 		stop();
 		_delay_ms(wait_time);
 	}else if(cell == 2){
@@ -400,11 +401,10 @@ void move(int cell){
 		stop();
 		_delay_ms(wait_time);
 	}else if(cell == 3){
-		soft_right_degrees(90);	//Rotate (soft turn) by 90 degrees
+		right_degrees(45); //Rotate (soft turn) by 90 degrees
 		stop();
 		_delay_ms(wait_time);
-
-		soft_left_degrees(90); //Rotate (soft turn) by 90 degrees
+		forward_mm(cell_distance_diagonal); //Moves robot forward 100mm
 		stop();
 		_delay_ms(wait_time);
 	}else if(cell == 4){
@@ -425,14 +425,10 @@ void move(int cell){
 		stop();
 		_delay_ms(wait_time);
 	}else if(cell == 7){
-		right_degrees(180);
-		_delay_ms(wait_time);
-
-		soft_right_degrees(90);	//Rotate (soft turn) by 90 degrees
+		left_degrees(135); //Rotate (soft turn) by 90 degrees
 		stop();
 		_delay_ms(wait_time);
-
-		soft_left_degrees(90); //Rotate (soft turn) by 90 degrees
+		forward_mm(cell_distance_diagonal); //Moves robot forward 100mm
 		stop();
 		_delay_ms(wait_time);
 	}else if(cell == 8){
@@ -442,12 +438,10 @@ void move(int cell){
 		stop();			
 		_delay_ms(wait_time);
 	}else if(cell == 9){
-		right_degrees(180);
-		_delay_ms(wait_time);
-		soft_left_2_degrees(90);	//Rotate (soft turn) by 90 degrees
+		right_degrees(135); //Rotate (soft turn) by 90 degrees
 		stop();
 		_delay_ms(wait_time);
-		soft_right_2_degrees(90); //Rotate (soft turn) by 90 degrees
+		forward_mm(cell_distance_diagonal); //Moves robot forward 100mm
 		stop();
 		_delay_ms(wait_time);
 	}
@@ -456,44 +450,40 @@ void move(int cell){
 
 void move_servo_horizontal(char degrees){
 	  servo_2(degrees);
-	  _delay_ms(30);
-
-	 _delay_ms(1000);
+	 _delay_ms(100);
 }
 
 void move_servo_vertical(char degrees){
  	
 	  servo_1(degrees);
-	  _delay_ms(1000);
-
-	 _delay_ms(1000);
+	  _delay_ms(100);
 }
 
 void move_servo(char degrees){
  	
 	  servo_2(degrees);
-	  _delay_ms(1000);
+	  _delay_ms(100);
 
 	  servo_1(45);
-	  _delay_ms(1000);
+	  _delay_ms(100);
 }
 
 default_move_all_servos(){
 	move_servo(0);
-	_delay_ms(2000);
+	_delay_ms(100);
 	move_servo(90);
-	_delay_ms(2000);
+	_delay_ms(100);
 	move_servo_vertical(90);
-	_delay_ms(2000);
+	_delay_ms(100);
 	move_servo(180);
-	_delay_ms(2000);
+	_delay_ms(100);
 }
 
 void reset_allstop(){
 	stop();
-	move_servo_horizontal(0);
+	move_servo_horizontal(90);
 	move_servo_vertical(45);
-	_delay_ms(500);
+	_delay_ms(100);
 	servo_1_free();
 	servo_2_free();
 }
@@ -509,63 +499,59 @@ int main(void)
 
 while(1)
 	{
-		
-//		if(gpio_input_current[0] != (PINJ & 0b11110000))
-//		{
-			gpio_input_current[0] = (PINJ & 0b11110000);
-			if(gpio_input_current[0] == 0b00000000)
-			{
-				reset_allstop();
-			}
-			else if(gpio_input_current[0] == 0b00010000)
-			{
-				move(1);
-			}
-			else if(gpio_input_current[0] == 0b00100000)
-			{
-				move(2);
-			}
-			else if(gpio_input_current[0] == 0b00110000)
-			{
-				move(3);
-			}
-			else if(gpio_input_current[0] == 0b01000000)
-			{
-				move(4);
-			}
-			else if(gpio_input_current[0] == 0b01010000)
-			{
-				move(5);
-			}
-			else if(gpio_input_current[0] == 0b01100000)
-			{
-				move(6);
-			}
-			else if(gpio_input_current[0] == 0b01110000)
-			{
-				move(7);
-			}
-			else if(gpio_input_current[0] == 0b10000000)
-			{
-				move(8);
-			}
-			else if(gpio_input_current[0] == 0b10010000)
-			{
-				move(9);
-			}
-			else if(gpio_input_current[0] == 0b10100000)
-			{
-				move_servo_horizontal(0); //right camera movement.
-			}
-			else if(gpio_input_current[0] == 0b10110000)
-			{
-				move_servo_horizontal(90); //center camera movement.
-			}
-			else if(gpio_input_current[0] == 0b11000000)
-			{
-				move_servo_horizontal(180); //left camera movement.
-			}
-			//reset_allstop();
-//		}
+		gpio_input_current[0] = (PINJ & 0b11110000);
+		if(gpio_input_current[0] == 0b00000000)
+		{
+			reset_allstop();
+		}
+		else if(gpio_input_current[0] == 0b00010000)
+		{
+			move(1);
+		}
+		else if(gpio_input_current[0] == 0b00100000)
+		{
+			move(2);
+		}
+		else if(gpio_input_current[0] == 0b00110000)
+		{
+			move(3);
+		}
+		else if(gpio_input_current[0] == 0b01000000)
+		{
+			move(4);
+		}
+		else if(gpio_input_current[0] == 0b01010000)
+		{
+			move(5);
+		}
+		else if(gpio_input_current[0] == 0b01100000)
+		{
+			move(6);
+		}
+		else if(gpio_input_current[0] == 0b01110000)
+		{
+			move(7);
+		}
+		else if(gpio_input_current[0] == 0b10000000)
+		{
+			move(8);
+		}
+		else if(gpio_input_current[0] == 0b10010000)
+		{
+			move(9);
+		}
+		else if(gpio_input_current[0] == 0b10100000)
+		{
+			move_servo_horizontal(0); //right camera movement.
+		}
+		else if(gpio_input_current[0] == 0b10110000)
+		{
+			move_servo_horizontal(90); //center camera movement.
+		}
+		else if(gpio_input_current[0] == 0b11000000)
+		{
+			move_servo_horizontal(180); //left camera movement.
+		}
+		//reset_allstop();
 	}
 }
