@@ -2,12 +2,11 @@
 #include <avr/interrupt.h>
 #include <util/delay.h>
 
+
 /*
 	Servo1 is for Vertical
 	Servo2 is for Horizontal
-*/
 
-/*
 	Pin 39 -> Port J - 6
 	Pin 40 -> Port J - 7 
 	Pin 41 -> Port J - 4  
@@ -388,7 +387,7 @@ void servo_3_free (void) //makes servo 3 free rotating
 void move(int cell){
 	int cell_distance = 200; // 100 mm between two cells
 	int cell_distance_diagonal = 280;
-	int wait_time = 10;
+	int wait_time = 100;
 	if (cell == 1){
 		left_degrees(45); //Rotate (soft turn) by 90 degrees
 		stop();
@@ -445,18 +444,17 @@ void move(int cell){
 		stop();
 		_delay_ms(wait_time);
 	}
-	reset_allstop();
 }
 
 void move_servo_horizontal(char degrees){
 	  servo_2(degrees);
-	 _delay_ms(100);
+	 _delay_ms(1000);
 }
 
 void move_servo_vertical(char degrees){
  	
 	  servo_1(degrees);
-	  _delay_ms(100);
+	  _delay_ms(1000);
 }
 
 void move_servo(char degrees){
@@ -477,6 +475,14 @@ default_move_all_servos(){
 	_delay_ms(100);
 	move_servo(180);
 	_delay_ms(100);
+}
+
+reset_servos(){
+	move_servo_horizontal(90);
+	move_servo_vertical(45);
+	_delay_ms(100);
+	servo_1_free();
+	servo_2_free();
 }
 
 void reset_allstop(){
@@ -506,38 +512,47 @@ while(1)
 		}
 		else if(gpio_input_current[0] == 0b00010000)
 		{
+			reset_servos();
 			move(1);
 		}
 		else if(gpio_input_current[0] == 0b00100000)
-		{
+		{	
+			reset_servos();
 			move(2);
 		}
 		else if(gpio_input_current[0] == 0b00110000)
 		{
+			reset_servos();
 			move(3);
 		}
 		else if(gpio_input_current[0] == 0b01000000)
 		{
+			reset_servos();
 			move(4);
 		}
 		else if(gpio_input_current[0] == 0b01010000)
 		{
+			reset_servos();
 			move(5);
 		}
 		else if(gpio_input_current[0] == 0b01100000)
 		{
+			reset_servos();
 			move(6);
 		}
 		else if(gpio_input_current[0] == 0b01110000)
 		{
+			reset_servos();
 			move(7);
 		}
 		else if(gpio_input_current[0] == 0b10000000)
 		{
+			reset_servos();
 			move(8);
 		}
 		else if(gpio_input_current[0] == 0b10010000)
 		{
+			reset_servos();
 			move(9);
 		}
 		else if(gpio_input_current[0] == 0b10100000)
