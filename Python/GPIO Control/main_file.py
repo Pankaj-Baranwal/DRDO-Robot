@@ -7,8 +7,8 @@ from time import sleep, time
 camera = picamera.PiCamera()
 camera.resolution = (640, 480)
 camera.framerate = 15
-camera.vflip = False
-camera.hflip = False
+camera.vflip = True
+camera.hflip = True
 camera.brightness = 50
 counter = 0
 camera.start_preview()
@@ -19,6 +19,7 @@ pin1 = 6 # This is GPIO6, hence, 5th pin in inner row from ports
 pin2 = 7 # 8th pin in outer row from ports
 pin3 = 8 # 9th pin in outer row from ports
 pin4 = 9 # 10th pin in inner row from ports
+prev_time = 0
 
 # Setting up basic GPIO settings
 gpio.setmode(gpio.BCM)
@@ -52,17 +53,19 @@ def click_picture():
         counter = 0
     camera.capture('image%s.jpg'%counter)
     print ("Clicked Image")
-    sleep(1)
+    sleep(0.5)
     os.popen("cat image%s.jpg | nc 192.168.1.108 2999"%counter)
     counter = counter + 1
     print ("Image sent")
 
 def move_to_cell(index):
+    print ('GOT IN')
     global pin1
     global pin2
     global pin3
     global pin4
     reset()
+    wait_time = 3
     if (index == 1):
         gpio.output(pin1, 1)
     elif (index == 2):
@@ -87,10 +90,11 @@ def move_to_cell(index):
     elif (index == 9):
         gpio.output(pin1, 1)
         gpio.output(pin4, 1)
-    sleep(3)
+    sleep(wait_time)
     camera_servo_movement(0)
     camera_servo_movement(90)
     camera_servo_movement(180)
+    reset()
         
 def camera_servo_movement(position):
     global pin1
@@ -108,6 +112,7 @@ def camera_servo_movement(position):
     elif (position == 180):
         gpio.output(pin3, 1)
         gpio.output(pin4, 1)
+    print (position)
     sleep(1)
     click_picture()
         
@@ -128,10 +133,12 @@ current_milli_time = lambda: int(round(time() * 1000))
 try:
     # Turned off by default
     reset()
+    sleep(1)
     # Infinity Loop
     camera_servo_movement(0)
     camera_servo_movement(90)
     camera_servo_movement(180)
+    prev_time = current_milli_time()
     with open("send.txt", "w") as f:
         f.write("---x---")
     while (1):
@@ -139,11 +146,13 @@ try:
         print ("Received data")
         f = open("received.txt")
         next = (f.readline()).strip()
+        print (next)
         with open("send.txt", "a") as f:
-            f.write("Moved to cell %s  %s\n"%(next, current_milli_time()))
+            f.write("Moved to cell %s  %s\n"%(next, (current_milli_time()-prev_time)))
+        prev_time = current_milli_time()
         if (next == '1'):
             move_to_cell(1)
-        elif (next == ' 2'):
+        elif (next == '2'):
             move_to_cell(2)
         elif (next == '3'):
             move_to_cell(3)
