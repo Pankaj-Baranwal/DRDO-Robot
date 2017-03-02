@@ -64,6 +64,8 @@ def move_to_cell(index):
     global pin2
     global pin3
     global pin4
+    reset()
+    sleep(1.5)
     wait_time = 3
     if (index == 1):
         gpio.output(pin1, 1)
