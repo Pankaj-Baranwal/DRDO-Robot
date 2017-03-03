@@ -1,8 +1,8 @@
 # Intention estimation and cognitive emulation for military decision making
 
-This is a research project under DRDO(Defence Research and Development Organization), India.  
+This is a research project under DRDO(**Defence Research and Development Organization**), India.  
 In this, we have to emulate a pursuit evasion scenario wherein both, the pursuer and the evader are autonomous agents artificially equipped with intelligence.  
-This study aims at evolving models for decision making scenarios such as habitat selection, ambush avoidance and dilemma resolution. The study explores optimal situational scenarios wherein deception is likely to be employed. It proposes a model for employing deception through asymmetric false signaling and evaluates its veracity through intention based assessment. The intention based model enables emulation of the proposed signaling using a probabilistic belief structure. Further the control theory based intention model can be employed for mind reading to judge the opponent's intention to deceive. We have developed a code on Matlab for deception detection, based on input images of the agent’s surroundings and are now on our way to testing this model experimentally on two mobile robots.
+This study aims at evolving models for decision making scenarios such as habitat selection, ambush avoidance and dilemma resolution. The study explores optimal situational scenarios wherein deception is likely to be employed. It proposes a model for employing deception through asymmetric false signaling and evaluates its veracity through intention based assessment. The intention based model enables emulation of the proposed signaling using a probabilistic belief structure. Further the control theory based intention model can be employed for mind reading to judge the opponent's intention to deceive.
 
 
 ## Getting Started
@@ -12,79 +12,50 @@ These instructions will get you a copy of the project up and running on your loc
 ### Prerequisites
 
 What things you need to install the software and how to install them
-
-```
-Give examples
-```
-
+#### Hardware:
+Raspberry Pi  
+Firebird-V Atmega 2560 Tank robot  
+RPi Camera module  
+  
+#### Software:
+Ubuntu  
+Python  
+Matlab  
+AVR Studio  
+AVR Bootloader  
+  
 ### Installing
 
-A step by step series of examples that tell you have to get a development env running
-
-Say what the step will be
-
-```
-Give the example
-```
-
-And repeat
-
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo
+A step by step series of examples that tell you have to get a development env running  
+Build `FireBirdIntegrated/ServoAndLocomotion.c` into a hex file using AVR studio.  
+(More details here: ([https://github.com/akshar100/eyantra-firebird-resources]))  
+Burn the hex into the Firebird bot using ***AVR Bootloader***  
+Raspberry Pi controls the Firebird motors and servos using the ***PORTJ*** pins onboard the bot.  
+The python code which needs to be run on pi can be found here: `Python/GPIO Control/main_file.py`
+That is it!
 
 ## Running the tests
 
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
+More will be uploaded soon.
 
 ## Deployment
 
-Add additional notes about how to deploy this on a live system
-
-## Built With
-
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+Use `RPi Board.jpg` to connect pins on RPi to Firebird-based bot using the configuration mentioned in the comments of Python file present here: `Python/GPIO Control/main_file.py`
 
 ## Contributing
 
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
+Please deploy it first before contacting us for contributing.  
+In case of some error, please post an issue first. We will get back to you as soon as possible.
 
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+* **Pankaj Baranwal** - *Python code, Embedded C code* - [Pankaj-Baranwal](https://github.com/Pankaj-Baranwal)
+* **Sanjeev Dubey** - *Matlab Code* - [getsanjeev](https://github.com/getsanjeev)
+* **Karan Dhingra** - *JAVA code* - [kdhingra307](https://github.com/kdhingra307)
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+See also the list of [contributors](https://github.com/Pankaj-Baranwal/DRDO-Robot/contributors) who participated in this project.
 
 ## Acknowledgments
 
 * Hat tip to anyone who's code was used
-* Inspiration
-* etc
+* Dr. A. K. Sinha (G-grade scientist at DRDO)
