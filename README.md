@@ -3,7 +3,7 @@
 This is a research project under DRDO(**Defence Research and Development Organization**), India.  
 In this, we have to emulate a pursuit evasion scenario wherein both, the pursuer and the evader are autonomous agents artificially equipped with intelligence.  
 This study aims at evolving models for decision making scenarios such as habitat selection, ambush avoidance and dilemma resolution. The study explores optimal situational scenarios wherein deception is likely to be employed. It proposes a model for employing deception through asymmetric false signaling and evaluates its veracity through intention based assessment. The intention based model enables emulation of the proposed signaling using a probabilistic belief structure. Further the control theory based intention model can be employed for mind reading to judge the opponent's intention to deceive.  
-More here: ([https://github.com/Pankaj-Baranwal/DRDO-Robot/blob/master/DRDO%20Brain/Game%20Theoretic%20Cognitive%20Strategies%20for%20Deceptive%20Report%202016Military%20Decision%20Making.docx?raw=true])
+More here: https://github.com/Pankaj-Baranwal/DRDO-Robot/blob/master/DRDO%20Brain/Game%20Theoretic%20Cognitive%20Strategies%20for%20Deceptive%20Report%202016Military%20Decision%20Making.docx?raw=true
 
 
 ## Getting Started
@@ -29,7 +29,7 @@ AVR Bootloader
 
 A step by step series of examples that tell you have to get a development env running  
 Build `FireBirdIntegrated/ServoAndLocomotion.c` into a hex file using AVR studio.  
-(More details here: ([https://github.com/akshar100/eyantra-firebird-resources]))  
+(More details here: https://github.com/akshar100/eyantra-firebird-resources])  
 Burn the hex into the Firebird bot using ***AVR Bootloader***  
 Raspberry Pi controls the Firebird motors and servos using the ***PORTJ*** pins onboard the bot.  
 The python code which needs to be run on pi can be found here: `Python/GPIO Control/main_file.py`
