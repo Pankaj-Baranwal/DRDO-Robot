@@ -394,87 +394,69 @@ void move(int cell){
 		_delay_ms(wait_time);
 		forward_mm(cell_distance_diagonal); //Moves robot forward 100mm
 		stop();
-		_delay_ms(wait_time);
 	}else if(cell == 2){
 		forward_mm(cell_distance); //Moves robot forward 100mm
 		stop();
-		_delay_ms(wait_time);
 	}else if(cell == 3){
 		right_degrees(45); //Rotate (soft turn) by 90 degrees
 		stop();
 		_delay_ms(wait_time);
 		forward_mm(cell_distance_diagonal); //Moves robot forward 100mm
 		stop();
-		_delay_ms(wait_time);
 	}else if(cell == 4){
 		left_degrees(90); //Rotate robot left by 90 degrees
 		stop();
 		_delay_ms(wait_time);
 		forward_mm(cell_distance); //Moves robot forward 100mm
 		stop();
-		_delay_ms(wait_time);
 	}else if(cell == 5){
 		stop();
-		_delay_ms(wait_time);
 	}else if(cell == 6){
 		right_degrees(90); //Rotate robot left by 90 degrees
 		stop();
 		_delay_ms(wait_time);
 		forward_mm(cell_distance); //Moves robot forward 100mm
 		stop();
-		_delay_ms(wait_time);
 	}else if(cell == 7){
 		left_degrees(135); //Rotate (soft turn) by 90 degrees
 		stop();
 		_delay_ms(wait_time);
 		forward_mm(cell_distance_diagonal); //Moves robot forward 100mm
 		stop();
-		_delay_ms(wait_time);
 	}else if(cell == 8){
 		right_degrees(180);
 		_delay_ms(wait_time);
 		forward_mm(cell_distance);   //Moves robot backward 100mm
 		stop();			
-		_delay_ms(wait_time);
 	}else if(cell == 9){
 		right_degrees(135); //Rotate (soft turn) by 90 degrees
 		stop();
 		_delay_ms(wait_time);
 		forward_mm(cell_distance_diagonal); //Moves robot forward 100mm
 		stop();
-		_delay_ms(wait_time);
 	}
 }
 
 void move_servo_horizontal(char degrees){
 	  servo_2(degrees);
-	 _delay_ms(1000);
 }
 
 void move_servo_vertical(char degrees){
  	
 	  servo_1(degrees);
-	  _delay_ms(1000);
 }
 
 void move_servo(char degrees){
  	
 	  servo_2(degrees);
-	  _delay_ms(100);
-
 	  servo_1(45);
-	  _delay_ms(100);
 }
 
 default_move_all_servos(){
 	move_servo(0);
-	_delay_ms(100);
 	move_servo(90);
-	_delay_ms(100);
 	move_servo_vertical(90);
-	_delay_ms(100);
 	move_servo(180);
-	_delay_ms(100);
 }
 
 reset_servos(){
