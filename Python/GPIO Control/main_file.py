@@ -28,23 +28,6 @@ gpio.setup(pin1, gpio.OUT)
 gpio.setup(pin2, gpio.OUT)
 gpio.setup(pin3, gpio.OUT)
 gpio.setup(pin4, gpio.OUT)
-
-# Control LED connected on pin1 as positive and pin2 as negative
-def switch_on():
-    global pin1
-    global pin2
-    gpio.output(pin1, 1)
-    gpio.output(pin2, 0)
-    # Sleep for 2 seconds
-    sleep(2)
-
-# Turn off LED
-def switch_off():
-    global pin1
-    global pin2
-    gpio.output(pin1, 0)
-    gpio.output(pin2, 0)
-    sleep(2)
     
 def click_picture():
     global camera
@@ -64,7 +47,7 @@ def move_to_cell(index):
     global pin2
     global pin3
     global pin4
-    wait_time = 3
+    wait_time = 4
     if (index == 1):
         gpio.output(pin1, 1)
     elif (index == 2):
@@ -93,7 +76,6 @@ def move_to_cell(index):
     camera_servo_movement(0)
     camera_servo_movement(90)
     camera_servo_movement(180)
-    reset()
         
 def camera_servo_movement(position):
     global pin1
@@ -101,7 +83,6 @@ def camera_servo_movement(position):
     global pin3
     global pin4
     wait_time = 1.5
-    reset()
     if (position == 0):
         gpio.output(pin2, 1)
         gpio.output(pin4, 1)
@@ -126,6 +107,7 @@ def reset():
     gpio.output(pin2, 0)
     gpio.output(pin3, 0)
     gpio.output(pin4, 0)
+    sleep(1)
     
 current_milli_time = lambda: int(round(time() * 1000))
     
@@ -134,7 +116,6 @@ current_milli_time = lambda: int(round(time() * 1000))
 try:
     # Turned off by default
     reset()
-    sleep(1)
     # Infinity Loop
     camera_servo_movement(0)
     camera_servo_movement(90)
