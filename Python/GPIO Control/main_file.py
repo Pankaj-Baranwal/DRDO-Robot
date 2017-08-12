@@ -1,6 +1,8 @@
 import os
 import picamera
 from time import sleep, time
+import serial, time
+arduino = serial.Serial('/dev/ttyACM0', 9600)
 
 camera = picamera.PiCamera()
 camera.resolution = (640, 480)
@@ -25,12 +27,11 @@ def click_picture():
     os.popen("cat image%s.jpg | nc 192.168.1.112 2999"%counter)
     counter = counter + 1
     print ("Image sent")
+    os.popen("nc -l 2999 > received.txt")
+    print ("Received data")
 
 def move_to_cell(index):
-    global pin1
-    global pin2
-    global pin3
-    global pin4
+
     if (index == 1):
         option = 'a'
     elif (index == 2):
@@ -61,6 +62,7 @@ def move_to_cell(index):
         print ("Something went wrong while processing instruction!")
         
 def camera_servo_movement(position):
+    print ("Moving servo to position " + str(position))
     if (position == 0):
         option = 'r'
     elif (position == 90):
@@ -83,6 +85,7 @@ try:
     camera_servo_movement(0)
     camera_servo_movement(90)
     camera_servo_movement(180)
+    print ("performed 3 camera movements")
     prev_time = current_milli_time()
     with open("send.txt", "w") as f:
         f.write("---x---")
@@ -114,6 +117,7 @@ try:
         elif (next == '9'):
             move_to_cell(9)
         elif (next == '10'):
+            print ("reset")
             # reset
         elif (next == '11'):
             camera_servo_movement(0)
@@ -122,11 +126,10 @@ try:
         elif (next == '13'):
             camera_servo_movement(180)
         elif (next == '0'):
+            print ("reset")
             #reset
             
 except KeyboardInterrupt:
-    gpio.cleanup()
     camera.stop_preview()
 finally:
-    gpio.cleanup()
     camera.stop_preview()
