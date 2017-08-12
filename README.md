@@ -3,7 +3,7 @@
 This is a research project under DRDO(**Defence Research and Development Organization**), India.  
 In this, we have to emulate a pursuit evasion scenario wherein both, the pursuer and the evader are autonomous agents artificially equipped with intelligence.  
 This study aims at evolving models for decision making scenarios such as habitat selection, ambush avoidance and dilemma resolution. The study explores optimal situational scenarios wherein deception is likely to be employed. It proposes a model for employing deception through asymmetric false signaling and evaluates its veracity through intention based assessment. The intention based model enables emulation of the proposed signaling using a probabilistic belief structure. Further the control theory based intention model can be employed for mind reading to judge the opponent's intention to deceive.  
-More here: https://github.com/Pankaj-Baranwal/DRDO-Robot/blob/master/DRDO%20Brain/Game%20Theoretic%20Cognitive%20Strategies%20for%20Deceptive%20Report%202016Military%20Decision%20Making.docx?raw=true
+More here: [Game Theoretic Cognitive Strategies for Deceptive Military Decision Making](https://github.com/Pankaj-Baranwal/DRDO-Robot/blob/master/DRDO%20Brain/Game%20Theoretic%20Cognitive%20Strategies%20for%20Deceptive%20Report%202016Military%20Decision%20Making.docx?raw=true)
 
 
 ## Getting Started
@@ -50,13 +50,14 @@ In case of some error, please post an issue first. We will get back to you as so
 
 ## Authors
 
-* **Pankaj Baranwal** - *Python code, Embedded C code* - [Pankaj-Baranwal](https://github.com/Pankaj-Baranwal)
-* **Sanjeev Dubey** - *Matlab Code* - [getsanjeev](https://github.com/getsanjeev)
 * **Karan Dhingra** - *JAVA code* - [kdhingra307](https://github.com/kdhingra307)
+* **Pankaj Baranwal** - *Python code, Embedded C code* - [Pankaj-Baranwal](https://github.com/Pankaj-Baranwal)
+* **Raghav Singh** - *Arduino code* - [raghav1875](https://github.com/raghav1875)
+* **Sanjeev Dubey** - *Matlab Code* - [getsanjeev](https://github.com/getsanjeev)
 
 See also the list of [contributors](https://github.com/Pankaj-Baranwal/DRDO-Robot/contributors) who participated in this project.
 
 ## Acknowledgments
 
-* Hat tip to anyone who's code was used
+* Hat tip to anyone whose code was used
 * Dr. A. K. Sinha (G-grade scientist at DRDO)
