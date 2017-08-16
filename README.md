@@ -59,5 +59,5 @@ See also the list of [contributors](https://github.com/Pankaj-Baranwal/DRDO-Robo
 
 ## Acknowledgments
 
-* Hat tip to anyone who's code was used
+* Hat tip to anyone whose code was used
 * Dr. A. K. Sinha (G-grade scientist at DRDO)
