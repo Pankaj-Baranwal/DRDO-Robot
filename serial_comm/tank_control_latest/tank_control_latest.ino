@@ -79,40 +79,33 @@ void loop(){
 void move_to_cell(int x){
   int forty_five = 20;
   int distance = 30;
-  if (x == 1){
-    stop_all();
+  stop_all();
+  if (x == 1){    
     left(forty_five);
     delay(300);
     forward(distance);
   }else if (x == 2){
-    stop_all();
     forward(distance);
-  }else if (x == 3){
-    stop_all();    
+  }else if (x == 3){   
     right(forty_five);
     delay(300);
     forward(distance);
   }else if (x == 4){
-    stop_all();
     left(forty_five*2);
     forward(distance);
   }else if(x == 5){
     stop_all();
   }else if (x == 6){
-    stop_all();
     right(forty_five*2);
     forward(distance);
   }else if(x == 7){
-    stop_all();
     left(forty_five*3);
     delay(300);
     forward(distance);
   }else if(x == 8){
-    stop_all();    
     left(forty_five*4);
     forward(distance);
   }else if(x == 9){
-    stop_all();    
     right(forty_five*3);
     delay(300);
     forward(distance);
@@ -123,7 +116,6 @@ void forward(int encoder_count){
   left_encoder = 0;
   volatile int prev = 0;
   volatile int curr = 0;
-  
   while(left_encoder < encoder_count) {
     curr = digitalRead(encoder_left);
     if (prev != curr){
@@ -135,7 +127,6 @@ void forward(int encoder_count){
     digitalWrite(pin_right1, LOW);
     digitalWrite(pin_right2, HIGH);
   }
-  stop_all();
 }
 
 void left(int encoder_count){
@@ -154,7 +145,7 @@ void left(int encoder_count){
     digitalWrite(pin_right1, HIGH);
     digitalWrite(pin_right2, LOW);
   }
-  stop_all();
+  
 }
 
 void right(int encoder_count){
@@ -173,7 +164,7 @@ void right(int encoder_count){
     digitalWrite(pin_right1, LOW);
     digitalWrite(pin_right2, HIGH);
   }
-  stop_all();
+  
 }
 
 void move_pycam(int degrees){
