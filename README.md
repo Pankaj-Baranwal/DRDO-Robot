@@ -50,9 +50,10 @@ In case of some error, please post an issue first. We will get back to you as so
 
 ## Authors
 
-* **Pankaj Baranwal** - *Python code, Embedded C code* - [Pankaj-Baranwal](https://github.com/Pankaj-Baranwal)
-* **Sanjeev Dubey** - *Matlab Code* - [getsanjeev](https://github.com/getsanjeev)
 * **Karan Dhingra** - *JAVA code* - [kdhingra307](https://github.com/kdhingra307)
+* **Pankaj Baranwal** - *Python code, Embedded C code* - [Pankaj-Baranwal](https://github.com/Pankaj-Baranwal)
+* **Raghav Singh** - *Arduino code* - [raghav1875](https://github.com/raghav1875)
+* **Sanjeev Dubey** - *Matlab Code* - [getsanjeev](https://github.com/getsanjeev)
 
 See also the list of [contributors](https://github.com/Pankaj-Baranwal/DRDO-Robot/contributors) who participated in this project.
 
